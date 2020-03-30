@@ -40,7 +40,9 @@ export default function Incidents() {
   }
 
   useEffect(() => {
-    loadIncidents();
+    try {
+      loadIncidents();
+    } catch (error) {}
   }, []);
 
   return (
@@ -59,12 +61,12 @@ export default function Incidents() {
         data={incidents}
         style={styles.incidentList}
         keyExtractor={incident => String(incident.id)}
-        // showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         onEndReached={loadIncidents}
         onEndReachedThreshold={0.2}
         renderItem={({ item: incident }) => (
           <View style={styles.incident}>
-            <Text style={styles.incidentProperty}>ONG: {incident.id}</Text>
+            <Text style={styles.incidentProperty}>ONG:</Text>
             <Text style={styles.incidentValue}>
               {incident.name} de {incident.city}/{incident.uf}
             </Text>
